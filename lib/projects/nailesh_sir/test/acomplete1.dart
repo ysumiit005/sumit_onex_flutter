@@ -31,7 +31,7 @@ class _PlaceAutocompleteState extends State<PlaceAutocomplete> {
 
   Future<void> _fetchPredictions(String input) async {
     const apiKey =
-        'AIzaSyDGvFewycl9yW2HghgKJ8zqQXCWXs_iRfY'; // Replace with your API key
+        ''; // Replace with your API key
     final endpoint =
         'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$input&types=(cities)&key=$apiKey';
 
