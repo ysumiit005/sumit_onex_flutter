@@ -55,19 +55,20 @@ class MainActivity : FlutterActivity() {
             if (call.method == "getWifiList") {
                 println("yepee wifi list");
 
-//                val value = getWifiList();
-//                result.success(value.toString());
-//                connectToWifi(context, "OrageDigital", "Offee9821") // my code not working
-//                connect("OrageDigital", "Offee9821") //priyanshu sir code
-
-                result.success("list should be displayed but working on it")
-
+               val value = getWifiList();
+      
+            //    connectToWifi(context, "OrageDigital", "Offee9821") // my code not working
+            //    connect("OrageDigital", "Offee9821") //priyanshu sir code - works on few old mobiles but not on new
+                try {
+                    result.success(value.toString())
+                 } catch (e: Exception) {
+                 // Suppress the error
+                 println("Custom Supressed Error as solution found on github to supress it ")
+                 }
             }
 
             // get wifi settings modal from below
             if (call.method == "getOnlyWifiSettingFromBottom") {
-                println("yepee wifi list");
-
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                     val panelIntent = Intent(Settings.Panel.ACTION_WIFI)
@@ -78,11 +79,11 @@ class MainActivity : FlutterActivity() {
 
                 }
 
-
             }
+
             // get wifi settings modal from below with also option of mobile net
             if (call.method == "getWifiAndMobileNetSettingFromBottom") {
-                println("yepee wifi list");
+                
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                     val panelIntent = Intent(Settings.Panel.ACTION_INTERNET_CONNECTIVITY)
@@ -111,7 +112,9 @@ class MainActivity : FlutterActivity() {
     //
     //
     fun getBatteryLevel(): Int {
+
         val batteryLevel: Int
+
         if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
             val batteryManager = getSystemService(Context.BATTERY_SERVICE) as BatteryManager
             batteryLevel = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
@@ -130,13 +133,15 @@ class MainActivity : FlutterActivity() {
     //
     //
     fun getWifiList(): List<ScanResult> {
+
         var wifiScanList: List<ScanResult>
         if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
             //
             var wifiManager = context.getSystemService(Context.WIFI_SERVICE) as WifiManager
-
+            
+            // get all wifi list mobile is able to find even though not connected to wifi
             wifiScanList = wifiManager.scanResults
-            println("hello -> " + wifiScanList);
+           
             if (ContextCompat.checkSelfPermission(
                             context,
                             android.Manifest.permission.ACCESS_COARSE_LOCATION
@@ -144,13 +149,16 @@ class MainActivity : FlutterActivity() {
             ) {
                 println("Not having permission")
             } else {
-                wifiScanList = wifiManager.scanResults
-                println("THis is the list")
+                
+                println("This is the list")
                 println(wifiScanList)
                 println("in kotlin")
-            }
 
-            return wifiScanList
+            }
+            
+
+            return wifiScanList 
+
         } else {
             return emptyList()
         }

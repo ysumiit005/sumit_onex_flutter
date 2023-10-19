@@ -41,6 +41,9 @@ class _ConnectWifiInternallyState extends State<ConnectWifiInternally> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Connect Wifi Inside App"),
+        ),
         drawer: const CustomAppDrawer(),
         body: Center(
           child: SingleChildScrollView(
@@ -107,11 +110,12 @@ class _ConnectWifiInternallyState extends State<ConnectWifiInternally> {
   Future<void> _getAllWifiList() async {
     try {
       final dynamic result = await platform.invokeMethod('getWifiList');
+
       setState(() {
         wifiList = result;
       });
     } on PlatformException catch (e) {
-      print("${e.message}");
+      print("custom Error Show ${e.message}");
     }
   }
 
