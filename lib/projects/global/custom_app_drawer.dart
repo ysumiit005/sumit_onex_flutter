@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sumit_onex_flutter/main.dart';
 import 'package:sumit_onex_flutter/projects/bloc_counter_example/screen/materialapp.dart';
+import 'package:sumit_onex_flutter/projects/doc_edgedetect_n_crop/main.dart';
 import 'package:sumit_onex_flutter/projects/native_wifi_settings/screens/ConnectWifiInternally.dart';
 import 'package:sumit_onex_flutter/projects/nailesh_sir/screens/autocomplete_widget.dart';
 
 import '../nailesh_sir/screens/withgeotaganddatabase.dart';
 import '../use_riverpod/screen/main_screen.dart';
+import '../webview_working/main.dart';
 
 class CustomAppDrawer extends StatelessWidget {
   const CustomAppDrawer({
@@ -111,7 +113,44 @@ class CustomAppDrawer extends StatelessWidget {
                     ),
                   );
                 },
-                child: const Text("WifiConnect using Native Code - Offee"),
+                child: const Text("WifiConnect using Native Code"),
+              ),
+            ),
+            //
+            // webview working with custom fixes
+            //
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const WebViewScreen(
+                        title: 'Sumit Onex Custom WebView',
+                        rexUrl: 'for now didnt added this dynamically',
+                      ),
+                    ),
+                  );
+                },
+                child: const Text("WebView Working"),
+              ),
+            ),
+            //
+            // doc edge detect and crop
+            //
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const DocEdgeDetectNCrop(),
+                    ),
+                  );
+                },
+                child: const Text("PytorchLite - Doc EdgeDetect And Crop"),
               ),
             ),
           ],
