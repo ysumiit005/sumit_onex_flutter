@@ -66,7 +66,12 @@ class _ConnectWifiInternallyState extends State<ConnectWifiInternally> {
                 const SizedBox(
                   height: 25,
                 ),
-                Text(wifiList.toString())
+                Text(wifiList.toString()),
+                const TextField(),
+                ElevatedButton(
+                  onPressed: _clearClipBoard,
+                  child: const Text("clear clipboard"),
+                )
               ],
             ),
           ),
@@ -113,6 +118,19 @@ class _ConnectWifiInternallyState extends State<ConnectWifiInternally> {
 
       setState(() {
         wifiList = result;
+      });
+    } on PlatformException catch (e) {
+      print("custom Error Show ${e.message}");
+    }
+  }
+
+  Future<void> _clearClipBoard() async {
+    print("ok");
+    try {
+      await platform.invokeMethod('clearClipboard');
+
+      setState(() {
+        wifiList = "yo";
       });
     } on PlatformException catch (e) {
       print("custom Error Show ${e.message}");

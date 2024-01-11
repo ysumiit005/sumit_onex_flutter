@@ -1,11 +1,8 @@
-package com.example.sumit_onex_flutter
+package com.onex.sumit_onex_flutter
 
 
 
-import android.content.Context
-import android.content.ContextWrapper
-import android.content.Intent
-import android.content.IntentFilter
+import android.content.*
 import android.content.pm.PackageManager
 import android.net.wifi.ScanResult
 import android.net.wifi.WifiManager
@@ -14,6 +11,8 @@ import android.os.Build
 import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 import android.provider.Settings
+import android.view.inputmethod.InputMethodInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.NonNull
 import androidx.core.content.ContextCompat
 import io.flutter.embedding.android.FlutterActivity
@@ -83,6 +82,8 @@ class MainActivity : FlutterActivity() {
 
             // get wifi settings modal from below with also option of mobile net
             if (call.method == "getWifiAndMobileNetSettingFromBottom") {
+
+                println("wow");
                 
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -93,6 +94,48 @@ class MainActivity : FlutterActivity() {
                     startActivity(Intent(WifiManager.ACTION_PICK_WIFI_NETWORK));
 
                 }
+
+            }
+
+            // clear clipboard
+            if (call.method == "clearClipboard") {
+                
+
+                println("yo yo gangam style ")
+
+                //chaloo code yeee
+                val clipboardManager = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+                println("1")
+                // Delete the clipboard.
+                val x = clipboardManager.primaryClip;
+                println("4"+x)
+                if (VERSION.SDK_INT >= VERSION_CODES.P) {
+                    clipboardManager.clearPrimaryClip()
+                }
+                // Or, delete all items in the clipboard.
+                // clipboardManager.setPrimaryClip(null); 
+
+                println("5")
+                val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                val inputMethodInfoList: List<InputMethodInfo> = imm.enabledInputMethodList
+                val inputMethodManager =
+                    applicationContext.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager.showInputMethodPicker()
+
+                println("6 -> "+inputMethodManager.enabledInputMethodList)
+
+
+
+                var gboardInputMethodInfo: InputMethodInfo? = null
+                for (inputMethodInfo in inputMethodInfoList) {
+                    if (inputMethodInfo.getPackageName().equals("com.google.android.inputmethod.latin")) {
+                        gboardInputMethodInfo = inputMethodInfo;
+                        println("gboard -> "+gboardInputMethodInfo)
+                        break;
+                    }
+                }
+//                imm.switchToInputMethod(gboardInputMethodInfo);
+
 
             }
 
