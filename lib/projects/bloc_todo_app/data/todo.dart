@@ -1,21 +1,16 @@
-// import 'package:flutter/material.dart';
+
 
 class Todo {
-  //
-  // variable
-  //
   final String title;
   final String subtitle;
   bool isDone;
 
-  //
-  // constructor
-  //
-  Todo({this.title = '', this.subtitle = '', this.isDone = false});
+  Todo({
+    this.title = "",
+    this.subtitle = "",
+    this.isDone = false,
+  });
 
-  //
-  // copy with
-  //
   Todo copyWith({
     String? title,
     String? subtitle,
@@ -28,10 +23,6 @@ class Todo {
     );
   }
 
-  //
-  // functions
-  //
-  // convert json to todo class
   factory Todo.fromJson(Map<String, dynamic> json) {
     return Todo(
         title: json['title'],
@@ -40,16 +31,19 @@ class Todo {
   }
 
   Map<String, dynamic> toJson() {
-    return {'title': title, 'subtitle': subtitle, 'isDone': isDone};
+    return {
+      'title': title,
+      "subtitle": subtitle,
+      "isDone": isDone,
+    };
   }
 
-  // to string function
   @override
   String toString() {
     return '''Todo: {
-			title: $title\n
-			subtitle: $subtitle\n
-			isDone: $isDone\n
-		}''';
+      title: $title\n
+      subtitle: $subtitle\n
+      isDone: $isDone\n
+    }''';
   }
 }

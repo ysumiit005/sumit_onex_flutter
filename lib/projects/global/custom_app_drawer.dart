@@ -6,6 +6,7 @@ import 'package:sumit_onex_flutter/projects/native_wifi_settings/screens/Connect
 import 'package:sumit_onex_flutter/projects/nailesh_sir/screens/autocomplete_widget.dart';
 
 import '../nailesh_sir/screens/withgeotaganddatabase.dart';
+import '../onex_sumit_keyboards/sumit_custom_keyboards_onex.dart';
 import '../use_riverpod/screen/main_screen.dart';
 import '../webview_working/main.dart';
 
@@ -147,6 +148,25 @@ class CustomAppDrawer extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => const DocEdgeDetectNCrop(),
+                    ),
+                  );
+                },
+                child: const Text("PytorchLite - Doc EdgeDetect And Crop"),
+              ),
+            ),
+            //
+            // custom keyboard
+            //
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CustomInternalKeyboard(
+                        title: 'custom keyboard',
+                      ),
                     ),
                   );
                 },
