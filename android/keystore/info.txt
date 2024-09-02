@@ -1,0 +1,6 @@
+pass - qwerty
+alias - sumit
+
+
+to check keystore.jks use below command
+C:\Program Files\Android\Android Studio\jbr\bin>keytool -v -list -keystore C:\Users\ysumi\OneDrive\Documents\sumit_workspace\sumit_om\practice\sumit_onex_flutter\android\keystore\mykeystore.jks

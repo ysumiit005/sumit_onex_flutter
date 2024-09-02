@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sumit_onex_flutter/main.dart';
-import 'package:sumit_onex_flutter/projects/bloc_counter_example/screen/materialapp.dart';
-import 'package:sumit_onex_flutter/projects/doc_edgedetect_n_crop/main.dart';
-import 'package:sumit_onex_flutter/projects/native_wifi_settings/screens/ConnectWifiInternally.dart';
-import 'package:sumit_onex_flutter/projects/nailesh_sir/screens/autocomplete_widget.dart';
-
+import 'package:sumit_onex_flutter/projects/inproduction/bloc_counter_example/screen/materialapp.dart';
+import 'package:sumit_onex_flutter/projects/inproduction/doc_edgedetect_n_crop/main.dart';
+import 'package:sumit_onex_flutter/projects/inproduction/native_wifi_settings/screens/ConnectWifiInternally.dart';
+import 'package:sumit_onex_flutter/projects/inproduction/nailesh_sir/screens/autocomplete_widget.dart';
 import '../nailesh_sir/screens/withgeotaganddatabase.dart';
 import '../onex_sumit_keyboards/sumit_custom_keyboards_onex.dart';
 import '../use_riverpod/screen/main_screen.dart';
@@ -170,7 +169,7 @@ class CustomAppDrawer extends StatelessWidget {
                     ),
                   );
                 },
-                child: const Text("PytorchLite - Doc EdgeDetect And Crop"),
+                child: const Text("Custom InApp Keyboard - MultiLanguage"),
               ),
             ),
           ],

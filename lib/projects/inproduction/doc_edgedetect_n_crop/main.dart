@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sumit_onex_flutter/projects/doc_edgedetect_n_crop/sumit/custom_cameraimagetaker.dart';
+import 'package:sumit_onex_flutter/projects/inproduction/doc_edgedetect_n_crop/sumit/custom_cameraimagetaker.dart';
 import 'run_model_by_camera_demo.dart';
 import 'run_model_by_image_demo.dart';
 
