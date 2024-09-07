@@ -4,7 +4,7 @@ import 'package:logger/logger.dart';
 import '../../network_layer/dio_client.dart';
 import '../../network_layer/error_handling.dart';
 
-class ApiService {
+class CatApiService {
   final Dio _dio = DioClient().dio;
   final Logger _logger = Logger();
 

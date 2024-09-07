@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-import "../data/remote/api_service.dart";
+import "../data/remote/cat_api_service.dart";
 
 class MyApp extends StatelessWidget {
   @override
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
         ),
         body: Center(
           child: FutureBuilder(
-            future: ApiService().fetchCatFact(),
+            future: CatApiService().fetchCatFact(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const CircularProgressIndicator();
