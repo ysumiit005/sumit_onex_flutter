@@ -24,79 +24,82 @@ class _RunModelByCameraDemoState extends State<RunModelByCameraDemo> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: Colors.black,
-      body: Stack(
-        children: <Widget>[
-          // Camera View
-          CameraView(resultsCallback, resultsCallbackClassification),
+    return SafeArea(
+      child: Scaffold(
+        key: scaffoldKey,
+        backgroundColor: Colors.black,
+        body: Stack(
+          children: <Widget>[
+            // Camera View
+            CameraView(resultsCallback, resultsCallbackClassification),
 
-          // Bounding boxes
-          boundingBoxes2(results),
+            // Bounding boxes
+            boundingBoxes2(results),
 
-          // Heading
-          // Align(
-          //   alignment: Alignment.topLeft,
-          //   child: Container(
-          //     padding: EdgeInsets.only(top: 20),
-          //     child: Text(
-          //       'Object Detection Flutter',
-          //       textAlign: TextAlign.left,
-          //       style: TextStyle(
-          //         fontSize: 28,
-          //         fontWeight: FontWeight.bold,
-          //         color: Colors.deepOrangeAccent.withOpacity(0.6),
-          //       ),
-          //     ),
-          //   ),
-          // ),
+            // Heading
+            // Align(
+            //   alignment: Alignment.topLeft,
+            //   child: Container(
+            //     padding: EdgeInsets.only(top: 20),
+            //     child: Text(
+            //       'Object Detection Flutter',
+            //       textAlign: TextAlign.left,
+            //       style: TextStyle(
+            //         fontSize: 28,
+            //         fontWeight: FontWeight.bold,
+            //         color: Colors.deepOrangeAccent.withOpacity(0.6),
+            //       ),
+            //     ),
+            //   ),
+            // ),
 
-          //Bottom Sheet
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: DraggableScrollableSheet(
-              initialChildSize: 0.4,
-              minChildSize: 0.1,
-              maxChildSize: 0.5,
-              builder: (_, ScrollController scrollController) => Container(
-                width: double.maxFinite,
-                decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.9),
-                    borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(24.0),
-                        topRight: Radius.circular(24.0))),
-                child: SingleChildScrollView(
-                  controller: scrollController,
-                  child: Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(Icons.keyboard_arrow_up,
-                            size: 48, color: Colors.orange),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: [
-                              if (classification != null)
-                                StatsRow('Classification:', '$classification'),
-                              if (classificationInferenceTime != null)
-                                StatsRow('Classification Inference time:',
-                                    '${classificationInferenceTime?.inMilliseconds} ms'),
-                              if (objectDetectionInferenceTime != null)
-                                StatsRow('Object Detection Inference time:',
-                                    '${objectDetectionInferenceTime?.inMilliseconds} ms'),
-                            ],
-                          ),
-                        )
-                      ],
+            //Bottom Sheet
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: DraggableScrollableSheet(
+                initialChildSize: 0.4,
+                minChildSize: 0.1,
+                maxChildSize: 0.5,
+                builder: (_, ScrollController scrollController) => Container(
+                  width: double.maxFinite,
+                  decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.9),
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(24.0),
+                          topRight: Radius.circular(24.0))),
+                  child: SingleChildScrollView(
+                    controller: scrollController,
+                    child: Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(Icons.keyboard_arrow_up,
+                              size: 48, color: Colors.orange),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                if (classification != null)
+                                  StatsRow(
+                                      'Classification:', '$classification'),
+                                if (classificationInferenceTime != null)
+                                  StatsRow('Classification Inference time:',
+                                      '${classificationInferenceTime?.inMilliseconds} ms'),
+                                if (objectDetectionInferenceTime != null)
+                                  StatsRow('Object Detection Inference time:',
+                                      '${objectDetectionInferenceTime?.inMilliseconds} ms'),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

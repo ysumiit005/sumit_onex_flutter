@@ -10,11 +10,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Google Maps Autocomplete Example'),
+      home: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('Google Maps Autocomplete Example'),
+          ),
+          body: PlaceAutocomplete(),
         ),
-        body: PlaceAutocomplete(),
       ),
     );
   }
@@ -30,8 +32,7 @@ class _PlaceAutocompleteState extends State<PlaceAutocomplete> {
   List<String> _predictions = [];
 
   Future<void> _fetchPredictions(String input) async {
-    const apiKey =
-        ''; // Replace with your API key
+    const apiKey = ''; // Replace with your API key
     final endpoint =
         'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$input&types=(cities)&key=$apiKey';
 

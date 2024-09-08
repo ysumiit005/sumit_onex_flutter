@@ -31,36 +31,38 @@ class CounterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Counter')),
-      drawer: const CustomAppDrawer(),
-      body: Center(
-        child: BlocBuilder<CounterBloc, int>(
-          builder: (context, count) {
-            return Text('$count',
-                style: Theme.of(context).textTheme.displayLarge);
-          },
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(title: const Text('Counter')),
+        drawer: const CustomAppDrawer(),
+        body: Center(
+          child: BlocBuilder<CounterBloc, int>(
+            builder: (context, count) {
+              return Text('$count',
+                  style: Theme.of(context).textTheme.displayLarge);
+            },
+          ),
         ),
-      ),
-      floatingActionButton: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          FloatingActionButton(
-            child: const Icon(Icons.add),
-            onPressed: () => context.read<CounterBloc>().add(Increment()),
-          ),
-          const SizedBox(height: 4),
-          FloatingActionButton(
-            child: const Icon(Icons.remove),
-            onPressed: () => context.read<CounterBloc>().add(Decrement()),
-          ),
-          const SizedBox(height: 4),
-          FloatingActionButton(
-            child: const Icon(Icons.brightness_6),
-            onPressed: () => context.read<ThemeCubit>().toggleTheme(),
-          ),
-        ],
+        floatingActionButton: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            FloatingActionButton(
+              child: const Icon(Icons.add),
+              onPressed: () => context.read<CounterBloc>().add(Increment()),
+            ),
+            const SizedBox(height: 4),
+            FloatingActionButton(
+              child: const Icon(Icons.remove),
+              onPressed: () => context.read<CounterBloc>().add(Decrement()),
+            ),
+            const SizedBox(height: 4),
+            FloatingActionButton(
+              child: const Icon(Icons.brightness_6),
+              onPressed: () => context.read<ThemeCubit>().toggleTheme(),
+            ),
+          ],
+        ),
       ),
     );
   }

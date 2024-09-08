@@ -39,26 +39,28 @@ class _ProfilePictureScreenState extends State<ProfilePictureScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Change Profile Picture'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            _image == null ? Text('No image selected.') : Image.file(_image!),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => _pickImage(ImageSource.gallery),
-              child: Text('Pick Image from Gallery'),
-            ),
-            SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () => _pickImage(ImageSource.camera),
-              child: Text('Take New Picture'),
-            ),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Change Profile Picture'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              _image == null ? Text('No image selected.') : Image.file(_image!),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () => _pickImage(ImageSource.gallery),
+                child: Text('Pick Image from Gallery'),
+              ),
+              SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () => _pickImage(ImageSource.camera),
+                child: Text('Take New Picture'),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -17,72 +17,74 @@ class DocEdgeDetectNCrop extends StatefulWidget {
 class DocEdgeDetectNCropState extends State<DocEdgeDetectNCrop> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sumit Onex EdgeDetection N Crop Using PytorcLite'),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Sumit Onex EdgeDetection N Crop Using PytorcLite'),
+        ),
+        body: Builder(builder: (context) {
+          return Center(
+            child: Column(
+              children: [
+                TextButton(
+                  onPressed: () => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const CustomCameraImageTaker()),
+                    )
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                  ),
+                  child: const Text(
+                    "Sumit Onex - Edge Detection and Cropping",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const RunModelByCameraDemo()),
+                    )
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                  ),
+                  child: const Text(
+                    "Run Model with Camera",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const RunModelByImageDemo()),
+                    )
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                  ),
+                  child: const Text(
+                    "Run Model with Image",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          );
+        }),
       ),
-      body: Builder(builder: (context) {
-        return Center(
-          child: Column(
-            children: [
-              TextButton(
-                onPressed: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const CustomCameraImageTaker()),
-                  )
-                },
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                ),
-                child: const Text(
-                  "Sumit Onex - Edge Detection and Cropping",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const RunModelByCameraDemo()),
-                  )
-                },
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                ),
-                child: const Text(
-                  "Run Model with Camera",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const RunModelByImageDemo()),
-                  )
-                },
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                ),
-                child: const Text(
-                  "Run Model with Image",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              )
-            ],
-          ),
-        );
-      }),
     );
   }
 }

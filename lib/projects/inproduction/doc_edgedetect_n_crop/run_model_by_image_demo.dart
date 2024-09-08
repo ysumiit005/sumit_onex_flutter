@@ -220,105 +220,107 @@ class _RunModelByImageDemoState extends State<RunModelByImageDemo> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Run model with Image'),
-        ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              child: objDetect.isNotEmpty
-                  ? _image == null
-                      ? const Text('No image selected.')
-                      : _objectModel.renderBoxesOnImage(_image!, objDetect)
-                  : _image == null
-                      ? const Text('No image selected.')
-                      : Image.file(_image!),
-            ),
-            Center(
-              child: Visibility(
-                visible: textToShow != null,
-                child: Text(
-                  "$textToShow",
-                  maxLines: 3,
+      home: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('Run model with Image'),
+          ),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                child: objDetect.isNotEmpty
+                    ? _image == null
+                        ? const Text('No image selected.')
+                        : _objectModel.renderBoxesOnImage(_image!, objDetect)
+                    : _image == null
+                        ? const Text('No image selected.')
+                        : Image.file(_image!),
+              ),
+              Center(
+                child: Visibility(
+                  visible: textToShow != null,
+                  child: Text(
+                    "$textToShow",
+                    maxLines: 3,
+                  ),
                 ),
               ),
-            ),
-            /*
-            Center(
-              child: TextButton(
-                onPressed: runImageModel,
-                child: Row(
-                  children: [
+              /*
+              Center(
+                child: TextButton(
+                  onPressed: runImageModel,
+                  child: Row(
+                    children: [
+        
+                      Icon(
+                        Icons.add_a_photo,
+                        color: Colors.grey,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              */
 
-                    Icon(
-                      Icons.add_a_photo,
-                      color: Colors.grey,
-                    ),
-                  ],
+              TextButton(
+                // onPressed: runClassification,
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                ),
+                onPressed: () {},
+                child: const Text(
+                  "Run Classification",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            ),
-            */
-
-            TextButton(
-              // onPressed: runClassification,
-              style: TextButton.styleFrom(
-                backgroundColor: Colors.blue,
-              ),
-              onPressed: () {},
-              child: const Text(
-                "Run Classification",
-                style: TextStyle(
-                  color: Colors.white,
+              TextButton(
+                // onPressed: runObjectDetection,
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                ),
+                onPressed: () {},
+                child: const Text(
+                  "Run object detection with labels",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            ),
-            TextButton(
-              // onPressed: runObjectDetection,
-              style: TextButton.styleFrom(
-                backgroundColor: Colors.blue,
-              ),
-              onPressed: () {},
-              child: const Text(
-                "Run object detection with labels",
-                style: TextStyle(
-                  color: Colors.white,
+              TextButton(
+                onPressed: runObjectDetectionYoloV8,
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                ),
+                child: const Text(
+                  "Run object detection YoloV8 with labels",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            ),
-            TextButton(
-              onPressed: runObjectDetectionYoloV8,
-              style: TextButton.styleFrom(
-                backgroundColor: Colors.blue,
-              ),
-              child: const Text(
-                "Run object detection YoloV8 with labels",
-                style: TextStyle(
-                  color: Colors.white,
+              TextButton(
+                onPressed: runObjectDetectionWithoutLabels,
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                ),
+                child: const Text(
+                  "Run object detection without labels",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            ),
-            TextButton(
-              onPressed: runObjectDetectionWithoutLabels,
-              style: TextButton.styleFrom(
-                backgroundColor: Colors.blue,
-              ),
-              child: const Text(
-                "Run object detection without labels",
-                style: TextStyle(
-                  color: Colors.white,
+              Center(
+                child: Visibility(
+                  visible: _prediction != null,
+                  child: Text(_prediction != null ? "${_prediction![0]}" : ""),
                 ),
-              ),
-            ),
-            Center(
-              child: Visibility(
-                visible: _prediction != null,
-                child: Text(_prediction != null ? "${_prediction![0]}" : ""),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

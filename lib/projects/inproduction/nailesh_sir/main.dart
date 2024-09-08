@@ -17,12 +17,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('SignUp'),
-        ),
-        body: const Center(
-          child: SignUpPage(),
+      home: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('SignUp'),
+          ),
+          body: const Center(
+            child: SignUpPage(),
+          ),
         ),
       ),
     );

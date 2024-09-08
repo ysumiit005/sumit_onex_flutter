@@ -261,87 +261,89 @@ class CustomCameraImageTakerState extends State<CustomCameraImageTaker> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Live Camera Preview"),
-        backgroundColor: Colors.redAccent,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      body: SingleChildScrollView(
-        child: Column(children: [
-          controller == null
-              ? const Center(child: Text("Loading Camera..."))
-              : !controller!.value.isInitialized
-                  ? const Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : FittedBox(
-                      fit: BoxFit.fitWidth,
-                      child: GestureDetector(
-                        onTap:
-                            toggleFocusMode, // Call the toggleFocusMode function on tap
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          // height: 100,
-                          child: CameraPreview(
-                            controller!,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Live Camera Preview"),
+          backgroundColor: Colors.redAccent,
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        body: SingleChildScrollView(
+          child: Column(children: [
+            controller == null
+                ? const Center(child: Text("Loading Camera..."))
+                : !controller!.value.isInitialized
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: GestureDetector(
+                          onTap:
+                              toggleFocusMode, // Call the toggleFocusMode function on tap
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            // height: 100,
+                            child: CameraPreview(
+                              controller!,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-          // Container(
-          //   //show captured image
-          //   padding: const EdgeInsets.all(30),
-          //   child: image == null
-          //       ? const Text("No image captured")
-          //       : Image.file(
-          //           File(image!.path),
-          //           // height: 300,
-          //         ),
-          //   //display captured image
-          // )
-        ]),
-      ),
-      floatingActionButton: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        child: FloatingActionButton(
-          shape: const ContinuousRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(15.0))),
-          backgroundColor: Colors.red,
-          tooltip: "Click to Capture Document",
-          onPressed: () async {
-            try {
-              _timer.cancel();
-              if (controller != null) {
-                //check if contrller is not null
-                if (controller!.value.isInitialized) {
-                  //check if controller is initialized
-                  image = await controller!.takePicture(); //capture image
-                  // setState(() {
-                  //   //update UI
-                  // });;
+            // Container(
+            //   //show captured image
+            //   padding: const EdgeInsets.all(30),
+            //   child: image == null
+            //       ? const Text("No image captured")
+            //       : Image.file(
+            //           File(image!.path),
+            //           // height: 300,
+            //         ),
+            //   //display captured image
+            // )
+          ]),
+        ),
+        floatingActionButton: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: FloatingActionButton(
+            shape: const ContinuousRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(15.0))),
+            backgroundColor: Colors.red,
+            tooltip: "Click to Capture Document",
+            onPressed: () async {
+              try {
+                _timer.cancel();
+                if (controller != null) {
+                  //check if contrller is not null
+                  if (controller!.value.isInitialized) {
+                    //check if controller is initialized
+                    image = await controller!.takePicture(); //capture image
+                    // setState(() {
+                    //   //update UI
+                    // });;
 
-                  // File file = File(image!.path);
-                  // Uint8List imageData = await image!.readAsBytes();
+                    // File file = File(image!.path);
+                    // Uint8List imageData = await image!.readAsBytes();
 
-                  // send image forward for processing
-                  // await Navigator.of(context).push(
-                  //   MaterialPageRoute(
-                  //     builder: (context) => SumitRunModelByImageDemo(
-                  //       // Pass the automatically generated path to
-                  //       // the DisplayPictureScreen widget.
-                  //       sumitForwardXFile: image,
-                  //     ),
-                  //   ),
-                  // );
-                  runObjectDetectionYoloV8(image);
+                    // send image forward for processing
+                    // await Navigator.of(context).push(
+                    //   MaterialPageRoute(
+                    //     builder: (context) => SumitRunModelByImageDemo(
+                    //       // Pass the automatically generated path to
+                    //       // the DisplayPictureScreen widget.
+                    //       sumitForwardXFile: image,
+                    //     ),
+                    //   ),
+                    // );
+                    runObjectDetectionYoloV8(image);
+                  }
                 }
+              } catch (e) {
+                print(e); //show error
               }
-            } catch (e) {
-              print(e); //show error
-            }
-          },
-          child: const Icon(Icons.camera),
+            },
+            child: const Icon(Icons.camera),
+          ),
         ),
       ),
     );

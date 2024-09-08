@@ -122,88 +122,90 @@ class _CustomInternalKeyboardState extends State<CustomInternalKeyboard> {
           isKeyboardVisible = false;
         });
       },
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  showSelectionDialog();
-                },
-                icon: const Icon(
-                  Icons.one_k,
-                ))
-          ],
-        ),
-        body: Stack(
-          children: [
-            Center(
-              child: Column(
-                children: <Widget>[
-                  TextFormField(
-                    // To prevent overflow with android and ios native keyboard
-                    keyboardType: TextInputType.none,
-                    controller: controllerField01,
-                    maxLines: null,
-                    minLines: null,
-                    onTap: () {
-                      setState(() {
-                        isKeyboardVisible = true;
-                        controllerKeyboard = controllerField01;
-                        // typeLayout = TypeLayout.hindi1;
-                      });
-                    },
-                  ),
-                  TextFormField(
-                    keyboardType: TextInputType.none,
-                    controller: controllerField02,
-                    maxLines: null,
-                    minLines: null,
-                    onTap: () {
-                      setState(() {
-                        isKeyboardVisible = true;
-                        controllerKeyboard = controllerField02;
-                        // typeLayout = TypeLayout.alphaEmail;
-                      });
-                    },
-                  ),
-                  TextFormField(
-                    keyboardType: TextInputType.none,
-                    controller: controllerField03,
-                    maxLines: null,
-                    minLines: null,
-                    onTap: () {
-                      setState(() {
-                        isKeyboardVisible = true;
-                        controllerKeyboard = controllerField03;
-                        // typeLayout = TypeLayout.numeric;
-                      });
-                    },
-                  ),
-                  Expanded(
-                    child: Container(),
-                  ),
-                ],
-              ),
-            ),
-            //
-            //
-            // sumit onex special keyboard
-            //
-            //
-            if (isKeyboardVisible)
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: KeyboardAux(
-                  languageChangeCallback: () {
+      child: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text(widget.title),
+            actions: [
+              IconButton(
+                  onPressed: () {
                     showSelectionDialog();
                   },
-                  controller: controllerKeyboard,
-                  typeLayout: typeLayout,
-                  keyboardLanguage: userLanguage,
+                  icon: const Icon(
+                    Icons.one_k,
+                  ))
+            ],
+          ),
+          body: Stack(
+            children: [
+              Center(
+                child: Column(
+                  children: <Widget>[
+                    TextFormField(
+                      // To prevent overflow with android and ios native keyboard
+                      keyboardType: TextInputType.none,
+                      controller: controllerField01,
+                      maxLines: null,
+                      minLines: null,
+                      onTap: () {
+                        setState(() {
+                          isKeyboardVisible = true;
+                          controllerKeyboard = controllerField01;
+                          // typeLayout = TypeLayout.hindi1;
+                        });
+                      },
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.none,
+                      controller: controllerField02,
+                      maxLines: null,
+                      minLines: null,
+                      onTap: () {
+                        setState(() {
+                          isKeyboardVisible = true;
+                          controllerKeyboard = controllerField02;
+                          // typeLayout = TypeLayout.alphaEmail;
+                        });
+                      },
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.none,
+                      controller: controllerField03,
+                      maxLines: null,
+                      minLines: null,
+                      onTap: () {
+                        setState(() {
+                          isKeyboardVisible = true;
+                          controllerKeyboard = controllerField03;
+                          // typeLayout = TypeLayout.numeric;
+                        });
+                      },
+                    ),
+                    Expanded(
+                      child: Container(),
+                    ),
+                  ],
                 ),
               ),
-          ],
+              //
+              //
+              // sumit onex special keyboard
+              //
+              //
+              if (isKeyboardVisible)
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: KeyboardAux(
+                    languageChangeCallback: () {
+                      showSelectionDialog();
+                    },
+                    controller: controllerKeyboard,
+                    typeLayout: typeLayout,
+                    keyboardLanguage: userLanguage,
+                  ),
+                ),
+            ],
+          ),
         ),
       ),
     );

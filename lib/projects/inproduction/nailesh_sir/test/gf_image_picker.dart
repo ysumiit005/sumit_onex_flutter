@@ -304,146 +304,149 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title!),
-      ),
-      body: Center(
-        child: !kIsWeb && defaultTargetPlatform == TargetPlatform.android
-            ? FutureBuilder<void>(
-                future: retrieveLostData(),
-                builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
-                  switch (snapshot.connectionState) {
-                    case ConnectionState.none:
-                    case ConnectionState.waiting:
-                      return const Text(
-                        'You have not yet picked an image.',
-                        textAlign: TextAlign.center,
-                      );
-                    case ConnectionState.done:
-                      return _handlePreview();
-                    case ConnectionState.active:
-                      if (snapshot.hasError) {
-                        return Text(
-                          'Pick image/video error: ${snapshot.error}}',
-                          textAlign: TextAlign.center,
-                        );
-                      } else {
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title!),
+        ),
+        body: Center(
+          child: !kIsWeb && defaultTargetPlatform == TargetPlatform.android
+              ? FutureBuilder<void>(
+                  future: retrieveLostData(),
+                  builder:
+                      (BuildContext context, AsyncSnapshot<void> snapshot) {
+                    switch (snapshot.connectionState) {
+                      case ConnectionState.none:
+                      case ConnectionState.waiting:
                         return const Text(
                           'You have not yet picked an image.',
                           textAlign: TextAlign.center,
                         );
-                      }
-                  }
+                      case ConnectionState.done:
+                        return _handlePreview();
+                      case ConnectionState.active:
+                        if (snapshot.hasError) {
+                          return Text(
+                            'Pick image/video error: ${snapshot.error}}',
+                            textAlign: TextAlign.center,
+                          );
+                        } else {
+                          return const Text(
+                            'You have not yet picked an image.',
+                            textAlign: TextAlign.center,
+                          );
+                        }
+                    }
+                  },
+                )
+              : _handlePreview(),
+        ),
+        floatingActionButton: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Semantics(
+              label: 'image_picker_example_from_gallery',
+              child: FloatingActionButton(
+                onPressed: () {
+                  isVideo = false;
+                  _onImageButtonPressed(ImageSource.gallery, context: context);
                 },
-              )
-            : _handlePreview(),
-      ),
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          Semantics(
-            label: 'image_picker_example_from_gallery',
-            child: FloatingActionButton(
-              onPressed: () {
-                isVideo = false;
-                _onImageButtonPressed(ImageSource.gallery, context: context);
-              },
-              heroTag: 'image0',
-              tooltip: 'Pick Image from gallery',
-              child: const Icon(Icons.photo),
+                heroTag: 'image0',
+                tooltip: 'Pick Image from gallery',
+                child: const Icon(Icons.photo),
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0),
-            child: FloatingActionButton(
-              onPressed: () {
-                isVideo = false;
-                _onImageButtonPressed(
-                  ImageSource.gallery,
-                  context: context,
-                  isMultiImage: true,
-                  isMedia: true,
-                );
-              },
-              heroTag: 'multipleMedia',
-              tooltip: 'Pick Multiple Media from gallery',
-              child: const Icon(Icons.photo_library),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0),
-            child: FloatingActionButton(
-              onPressed: () {
-                isVideo = false;
-                _onImageButtonPressed(
-                  ImageSource.gallery,
-                  context: context,
-                  isMedia: true,
-                );
-              },
-              heroTag: 'media',
-              tooltip: 'Pick Single Media from gallery',
-              child: const Icon(Icons.photo_library),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0),
-            child: FloatingActionButton(
-              onPressed: () {
-                isVideo = false;
-                _onImageButtonPressed(
-                  ImageSource.gallery,
-                  context: context,
-                  isMultiImage: true,
-                );
-              },
-              heroTag: 'image1',
-              tooltip: 'Pick Multiple Image from gallery',
-              child: const Icon(Icons.photo_library),
-            ),
-          ),
-          if (_picker.supportsImageSource(ImageSource.camera))
             Padding(
               padding: const EdgeInsets.only(top: 16.0),
               child: FloatingActionButton(
                 onPressed: () {
                   isVideo = false;
-                  _onImageButtonPressed(ImageSource.camera, context: context);
+                  _onImageButtonPressed(
+                    ImageSource.gallery,
+                    context: context,
+                    isMultiImage: true,
+                    isMedia: true,
+                  );
                 },
-                heroTag: 'image2',
-                tooltip: 'Take a Photo',
-                child: const Icon(Icons.camera_alt),
+                heroTag: 'multipleMedia',
+                tooltip: 'Pick Multiple Media from gallery',
+                child: const Icon(Icons.photo_library),
               ),
             ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0),
-            child: FloatingActionButton(
-              backgroundColor: Colors.red,
-              onPressed: () {
-                isVideo = true;
-                _onImageButtonPressed(ImageSource.gallery, context: context);
-              },
-              heroTag: 'video0',
-              tooltip: 'Pick Video from gallery',
-              child: const Icon(Icons.video_library),
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: FloatingActionButton(
+                onPressed: () {
+                  isVideo = false;
+                  _onImageButtonPressed(
+                    ImageSource.gallery,
+                    context: context,
+                    isMedia: true,
+                  );
+                },
+                heroTag: 'media',
+                tooltip: 'Pick Single Media from gallery',
+                child: const Icon(Icons.photo_library),
+              ),
             ),
-          ),
-          if (_picker.supportsImageSource(ImageSource.camera))
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: FloatingActionButton(
+                onPressed: () {
+                  isVideo = false;
+                  _onImageButtonPressed(
+                    ImageSource.gallery,
+                    context: context,
+                    isMultiImage: true,
+                  );
+                },
+                heroTag: 'image1',
+                tooltip: 'Pick Multiple Image from gallery',
+                child: const Icon(Icons.photo_library),
+              ),
+            ),
+            if (_picker.supportsImageSource(ImageSource.camera))
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0),
+                child: FloatingActionButton(
+                  onPressed: () {
+                    isVideo = false;
+                    _onImageButtonPressed(ImageSource.camera, context: context);
+                  },
+                  heroTag: 'image2',
+                  tooltip: 'Take a Photo',
+                  child: const Icon(Icons.camera_alt),
+                ),
+              ),
             Padding(
               padding: const EdgeInsets.only(top: 16.0),
               child: FloatingActionButton(
                 backgroundColor: Colors.red,
                 onPressed: () {
                   isVideo = true;
-                  _onImageButtonPressed(ImageSource.camera, context: context);
+                  _onImageButtonPressed(ImageSource.gallery, context: context);
                 },
-                heroTag: 'video1',
-                tooltip: 'Take a Video',
-                child: const Icon(Icons.videocam),
+                heroTag: 'video0',
+                tooltip: 'Pick Video from gallery',
+                child: const Icon(Icons.video_library),
               ),
             ),
-        ],
+            if (_picker.supportsImageSource(ImageSource.camera))
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0),
+                child: FloatingActionButton(
+                  backgroundColor: Colors.red,
+                  onPressed: () {
+                    isVideo = true;
+                    _onImageButtonPressed(ImageSource.camera, context: context);
+                  },
+                  heroTag: 'video1',
+                  tooltip: 'Take a Video',
+                  child: const Icon(Icons.videocam),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }

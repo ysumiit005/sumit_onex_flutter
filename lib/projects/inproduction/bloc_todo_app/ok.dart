@@ -45,23 +45,25 @@ class MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Directory Paths'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text("Cache Directory: $cachePath"),
-            Text("External Directory: $externalPath"),
-            Text("Document Directory: $documentPath"),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: getDirectoryPaths,
-              child: const Text('Get Directory Paths'),
-            ),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Directory Paths'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text("Cache Directory: $cachePath"),
+              Text("External Directory: $externalPath"),
+              Text("Document Directory: $documentPath"),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: getDirectoryPaths,
+                child: const Text('Get Directory Paths'),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -13,14 +13,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Asset Image to Variable'),
+      home: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('Asset Image to Variable'),
+          ),
+          // body: const CustomImageCropperFromImageFile(
+          //   detectedImage: null,
+          //   getDetectedObj: PyTorchRect(),
+          // ),
         ),
-        // body: const CustomImageCropperFromImageFile(
-        //   detectedImage: null,
-        //   getDetectedObj: PyTorchRect(),
-        // ),
       ),
     );
   }

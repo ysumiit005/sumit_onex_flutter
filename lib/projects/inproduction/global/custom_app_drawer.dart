@@ -5,6 +5,7 @@ import 'package:sumit_onex_flutter/projects/inproduction/dio_singleton_template/
 import 'package:sumit_onex_flutter/projects/inproduction/doc_edgedetect_n_crop/main.dart';
 import 'package:sumit_onex_flutter/projects/inproduction/native_wifi_settings/screens/ConnectWifiInternally.dart';
 import 'package:sumit_onex_flutter/projects/inproduction/nailesh_sir/screens/autocomplete_widget.dart';
+import '../flutmapp_tweenanimation.dart/tweenwidget_flutmapp.dart';
 import '../nailesh_sir/screens/withgeotaganddatabase.dart';
 import '../onex_sumit_keyboards/sumit_custom_keyboards_onex.dart';
 import '../use_riverpod/screen/main_screen.dart';
@@ -17,179 +18,149 @@ class CustomAppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
+    return const Drawer(
       child: SingleChildScrollView(
         child: Column(
           children: [
+            //
             // home
+            //
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const MyHomePage(),
-                    ),
-                  );
-                },
-                child: const Text("Home"),
-              ),
+              height: 5,
             ),
+            CustomAppDrawerButtons(
+              buttonText: 'Home',
+              routePage: MyHomePage(),
+            ),
+
+            //
             // riverpod example
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const UseRiverpod(),
-                    ),
-                  );
-                },
-                child: const Text("RiverPod Counter Example"),
-              ),
+            //
+            CustomAppDrawerButtons(
+              buttonText: 'RiverPod Counter Example',
+              routePage: UseRiverpod(),
             ),
+
+            //
             // bloc example
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const BlocCounterExample(),
-                    ),
-                  );
-                },
-                child: const Text("Bloc Counter Example"),
-              ),
+            //
+            CustomAppDrawerButtons(
+              buttonText: 'Bloc Counter Example',
+              routePage: BlocCounterExample(),
             ),
             //
             // Naylesh sir signup app with geotag
             //
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SignUpPage(),
-                    ),
-                  );
-                },
-                child: const Text("SignUpApp - Naylesh Sir"),
-              ),
+            CustomAppDrawerButtons(
+              buttonText: 'SignUpApp - Naylesh Sir',
+              routePage: SignUpPage(),
             ),
             //
             // Naylesh sir autocomplete app
             //
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const AutocompleteExampleApp(),
-                    ),
-                  );
-                },
-                child: const Text("AutocompleteApp - Naylesh Sir"),
-              ),
+            CustomAppDrawerButtons(
+              buttonText: 'AutocompleteApp - Naylesh Sir',
+              routePage: AutocompleteExampleApp(),
             ),
+
             //
             // get wifi connection within app - offee
             //
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ConnectWifiInternally(),
-                    ),
-                  );
-                },
-                child: const Text("WifiConnect using Native Code"),
-              ),
+            CustomAppDrawerButtons(
+              buttonText: 'WifiConnect using Native Code',
+              routePage: ConnectWifiInternally(),
             ),
+
             //
             // webview working with custom fixes
             //
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const WebViewScreen(
-                        title: 'Sumit Onex Custom WebView',
-                        rexUrl: 'for now didnt added this dynamically',
-                      ),
-                    ),
-                  );
-                },
-                child: const Text("WebView Working"),
+            CustomAppDrawerButtons(
+              buttonText: 'WebView Working',
+              routePage: WebViewScreen(
+                title: 'Sumit Onex Custom WebView',
+                rexUrl: 'for now didnt added this dynamically',
               ),
             ),
+
             //
             // doc edge detect and crop
             //
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const DocEdgeDetectNCrop(),
-                    ),
-                  );
-                },
-                child: const Text("PytorchLite - Doc EdgeDetect And Crop"),
-              ),
+            CustomAppDrawerButtons(
+              buttonText: 'PytorchLite - Doc EdgeDetect And Crop',
+              routePage: DocEdgeDetectNCrop(),
             ),
+
             //
             // custom keyboard
             //
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const CustomInternalKeyboard(
-                        title: 'custom keyboard',
-                      ),
-                    ),
-                  );
-                },
-                child: const Text("Custom InApp Keyboard - MultiLanguage"),
+            CustomAppDrawerButtons(
+              buttonText: 'Custom InApp Keyboard - MultiLanguage',
+              routePage: CustomInternalKeyboard(
+                title: "Custom InApp Keyboard - MultiLanguage",
               ),
             ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const CatFactsScreen(
-                          // title: 'Flutter Dio Singleton Template Example',
-                          ),
-                    ),
-                  );
-                },
-                child: const Text("Flutter Dio Singleton"),
-              ),
+            //
+            //
+            // flutter dio singleton
+            CustomAppDrawerButtons(
+              buttonText: 'Flutter Dio Singleton',
+              routePage: CatFactsScreen(),
+            ),
+
+            //
+            //
+            // flutter tween animation - zoom in zoom out
+            CustomAppDrawerButtons(
+              buttonText: 'Flutter Tween Animation',
+              routePage: TweenAnimationFlutter(),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class CustomAppDrawerButtons extends StatelessWidget {
+  final Color? materialColor = Colors.purple;
+  final Color? splashColor = Colors.grey;
+  final String buttonText;
+
+  final Widget routePage;
+
+  const CustomAppDrawerButtons({
+    Key? key,
+    required this.buttonText,
+    required this.routePage,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.8,
+      margin: const EdgeInsets.only(bottom: 5),
+      child: Material(
+        color: materialColor,
+        borderRadius: BorderRadius.circular(10),
+        child: InkWell(
+          splashColor: splashColor,
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => routePage,
+              ),
+            );
+          },
+          child: Container(
+            height: 50,
+            child: Center(
+              child: Text(
+                buttonText,
+                style: const TextStyle(color: Colors.white),
+              ),
+            ),
+          ),
         ),
       ),
     );

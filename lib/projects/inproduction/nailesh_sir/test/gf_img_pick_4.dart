@@ -131,12 +131,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Profile Pic Picker'),
-        ),
-        body: Center(
-          child: ProfilePicPicker(),
+      home: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text('Profile Pic Picker'),
+          ),
+          body: Center(
+            child: ProfilePicPicker(),
+          ),
         ),
       ),
     );
