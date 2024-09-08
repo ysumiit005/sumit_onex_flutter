@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sumit_onex_flutter/main.dart';
 import 'package:sumit_onex_flutter/projects/inproduction/bloc_counter_example/screen/materialapp.dart';
+import 'package:sumit_onex_flutter/projects/inproduction/dio_singleton_template/view/cat_facts_screen.dart';
 import 'package:sumit_onex_flutter/projects/inproduction/doc_edgedetect_n_crop/main.dart';
 import 'package:sumit_onex_flutter/projects/inproduction/native_wifi_settings/screens/ConnectWifiInternally.dart';
 import 'package:sumit_onex_flutter/projects/inproduction/nailesh_sir/screens/autocomplete_widget.dart';
@@ -170,6 +171,22 @@ class CustomAppDrawer extends StatelessWidget {
                   );
                 },
                 child: const Text("Custom InApp Keyboard - MultiLanguage"),
+              ),
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CatFactsScreen(
+                          // title: 'Flutter Dio Singleton Template Example',
+                          ),
+                    ),
+                  );
+                },
+                child: const Text("Flutter Dio Singleton"),
               ),
             ),
           ],
